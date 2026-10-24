@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}ინფორმაცია{% endblock %}
+
+{% block content %}
+<section class="page-intro">
+    <span class="eyebrow">პირადი პროფილი</span>
+    <h1>ჩემს შესახებ<span class="heading-dot">.</span></h1>
+    <p class="page-description">
+        ჩემი ძირითადი მონაცემები.
+    </p>
+</section>
+
+<section class="card profile-card" aria-labelledby="profile-name">
+    <div class="profile">
+        <div class="avatar" aria-hidden="true">{{ first_name|first }}</div>
+
+        <div class="profile-details">
+            <span class="profile-label">მოგესალმები</span>
+            <h2 class="profile-name" id="profile-name">
+                {{ first_name }} {{ last_name }}
+            </h2>
+            <p class="muted">პირადი ინფორმაცია</p>
+        </div>
+
+        <span class="profile-indicator" aria-label="პროფილი">
+            <span></span> პროფილი
+        </span>
+    </div>
+
+    <div class="section-heading">
+        <h3>ძირითადი მონაცემები</h3>
+        <span class="section-caption">01 — 04</span>
+    </div>
+
+    <div class="stats">
+        <div class="stat">
+            <span class="stat-label">სახელი</span>
+            <span class="stat-value">{{ first_name }}</span>
+        </div>
+
+        <div class="stat">
+            <span class="stat-label">გვარი</span>
+            <span class="stat-value">{{ last_name }}</span>
+        </div>
+
+        <div class="stat">
+            <span class="stat-label">ასაკი</span>
+            <span class="stat-value">{{ age }} <span class="unit">წელი</span></span>
+        </div>
+
+        <div class="stat">
+            <span class="stat-label">სიმაღლე</span>
+            <span class="stat-value">{{ height }} <span class="unit">სმ</span></span>
+        </div>
+    </div>
+
+    <a href="{% url 'hobbies' %}" class="card-link">
+        <span>ჩემი ჰობები</span>
+        <span class="link-arrow" aria-hidden="true">↗</span>
+    </a>
+</section>
+{% endblock %}

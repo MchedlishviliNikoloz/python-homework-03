@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f8f9fc">
+
+    <title>{% block title %}ჩემი საიტი{% endblock %} · Nikoloz</title>
+    <meta name="description" content="ნიკოლოზის პირადი გვერდი — ინფორმაცია და ინტერესები.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="{% url 'info' %}" class="brand" aria-label="მთავარი გვერდი">
+                <span class="brand-mark">N</span>
+                <span class="brand-name">Nikoloz<span class="brand-dot">.</span></span>
+            </a>
+
+            <nav class="nav" aria-label="მთავარი ნავიგაცია">
+                <a href="{% url 'info' %}"
+                   {% if request.resolver_match.url_name == 'info' %}aria-current="page"{% endif %}
+                   class="{% if request.resolver_match.url_name == 'info' %}active{% endif %}">
+                    ინფორმაცია
+                </a>
+                <a href="{% url 'hobbies' %}"
+                   {% if request.resolver_match.url_name == 'hobbies' %}aria-current="page"{% endif %}
+                   class="{% if request.resolver_match.url_name == 'hobbies' %}active{% endif %}">
+                    ჰობები
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <span>© {% now "Y" %} Nikoloz Mchedlishvili</span>
+            <span class="footer-note">შექმნილია Django-თი</span>
+        </div>
+    </footer>
+</body>
+</html>

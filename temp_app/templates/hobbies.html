@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}ჰობები{% endblock %}
+
+{% block content %}
+<section class="page-intro">
+    <span class="eyebrow">ჩემი ინტერესები</span>
+    <h1>ჩემი ჰობები<span class="heading-dot">.</span></h1>
+</section>
+
+<section class="card hobbies-card">
+    <div class="card-head">
+        <div>
+            <span class="profile-label">თავისუფალი დრო</span>
+            <h2 class="card-title">ჩემი ჰობები</h2>
+        </div>
+
+        {% if grade == 12 %}
+            <span class="badge badge-primary">
+                <span class="badge-dot"></span>
+                აბიტურიენტი
+            </span>
+        {% else %}
+            <span class="badge">მომავალი აბიტურიენტი</span>
+        {% endif %}
+    </div>
+
+    <div class="section-heading">
+        <h3>რაც მაინტერესებს</h3>
+        <span class="section-caption">
+            {{ hobbies|length|stringformat:"02d" }} აქტივობა
+        </span>
+    </div>
+
+    <ul class="hobby-list">
+        {% for hobby in hobbies %}
+            <li class="hobby">
+                <span class="hobby-num">{{ forloop.counter|stringformat:"02d" }}</span>
+                <span class="hobby-name">{{ hobby }}</span>
+            </li>
+        {% empty %}
+            <li class="empty-state">ჰობები ჯერ დამატებული არ არის.</li>
+        {% endfor %}
+    </ul>
+
+    <div class="academic-note">
+        <span class="academic-icon" aria-hidden="true">12</span>
+        <div>
+            <span class="academic-label">განათლება</span>
+            <p class="academic-text">კლასი: {{ grade }}</p>
+        </div>
+    </div>
+
+    <a href="{% url 'info' %}" class="card-link">
+        <span>პირად ინფორმაციაზე დაბრუნება</span>
+        <span class="link-arrow link-arrow-back" aria-hidden="true">↗</span>
+    </a>
+</section>
+{% endblock %}
